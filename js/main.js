@@ -1,13 +1,40 @@
 const stock = [
-    { nombre: "leche", precio: 100 },
-    { nombre: "huevos", precio: 50 },
-    { nombre: "pan", precio: 70 },
-    { nombre: "jamon", precio: 100 },
-    { nombre: "masitas", precio: 200 },
-    { nombre: "gaseosa", precio: 500 },
+    {
+        id: 1,
+        nombre: "leche", 
+        precio: 100
+    },
+    {
+        id: 2,
+        nombre: "huevos", 
+        precio: 50
+    },
+    {
+        id: 3,
+        nombre: "pan", 
+        precio: 70
+    },
+    {
+        id: 4,
+        nombre: "jamon", 
+        precio: 100
+    },
+    {
+        id: 5,
+        nombre: "masitas", 
+        precio: 200
+    },
+    {
+        id: 6,
+        nombre: "gaseosa", 
+        precio: 500
+    },
 ];
 
+
 let carrito = []
+
+
 
 let elegir = prompt("Hola, ¿deseas ver la lista de productos?")
 
@@ -33,19 +60,19 @@ while (elegir != "no") {
                 precio = 100;
                 break;
             case "huevos":
-                precio: 50;
+                precio= 50;
                 break;
             case "pan":
-                precio: 70;
+                precio= 70;
                 break;
             case "jamon":
-                precio: 100;
+                precio= 100;
                 break;
             case "masitas":
-                precio: 200;
+                precio= 200;
                 break;
             case "gaseosa":
-                precio: 500;
+                precio= 500;
                 break;
             default:
                 break;
@@ -61,8 +88,11 @@ while (elegir != "no") {
 
     while (elegir === "no") {
         alert("Gracias por la compra")
-        let carritoFinal
-        console.log(`producto: ${carritoFinal.producto}, unidades: ${carrito.cantidad}`)
-        break;
+        carrito.forEach((carritoFinal)=> {
+            console.log(`producto: ${carritoFinal.producto}, unidades: ${carritoFinal.cantidad}, total a pagar por producto ${carritoFinal.cantidad * carritoFinal.precio}`)
+        })
+        const total = carrito.reduce((acc, el)=> acc + el.precio * el.cantidad, 0)
+    alert(`el total a pagar es: ${total}`)
+    break;    
     }
 }
