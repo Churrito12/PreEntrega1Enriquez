@@ -1,98 +1,70 @@
-const stock = [
+const contenido = document.getElementById("contenido")
+
+const productos = [
     {
         id: 1,
-        nombre: "leche", 
-        precio: 100
+        nombre: "Leche", 
+        precio: 100,
+        img: 
+            "https://carrefourar.vtexassets.com/arquivos/ids/229098/7793913001822_01.jpg?v=637727700141700000",
     },
     {
         id: 2,
-        nombre: "huevos", 
-        precio: 50
+        nombre: "Huevos", 
+        precio: 50,
+        img:
+            "https://imagenes.20minutos.es/files/image_990_v3/uploads/imagenes/2022/07/22/huevos.jpeg",
     },
     {
         id: 3,
-        nombre: "pan", 
-        precio: 70
+        nombre: "Pan", 
+        precio: 70,
+        img:
+            "https://images.hola.com/imagenes/cocina/recetas/20191009151184/pan-de-leche/0-730-595/pan-leche-t.jpg?tx=w_680",
     },
     {
         id: 4,
-        nombre: "jamon", 
-        precio: 100
+        nombre: "Jamon", 
+        precio: 100,
+        img:
+            "https://doina.com.ar/wp-content/uploads/2020/02/1-Jamon-Crudo.png",
     },
     {
         id: 5,
-        nombre: "masitas", 
-        precio: 200
+        nombre: "Masitas", 
+        precio: 200,
+        img: 
+            "https://img-global.cpcdn.com/recipes/2a76808ad58525a9/400x400cq70/photo.jpg",
     },
     {
         id: 6,
-        nombre: "gaseosa", 
-        precio: 500
+        nombre: "Gaseosa", 
+        precio: 500,
+        img:
+            "https://d2r9epyceweg5n.cloudfront.net/stores/001/151/835/products/77908950004301-80602de5b61cff11bb15890782195412-640-0.jpg",
     },
 ];
 
 
-let carrito = []
+let carrito = [];
+
+productos.forEach((producto)=>{
+    let content = document.createElement("div");
+    content.className = "card"
+    content.innerHTML = `
+    <img src="${producto.img}">
+    <h3>${producto.nombre}"<h3/>
+    <p class="precio">${producto.precio} $</p>
+    `;
+
+    contenido.append(content)
+
+    let comprar = document.createElement("button")
+    comprar.innerText = "comprar";
+    comprar.className = "comprar";
+
+    content.append(comprar);
+})
 
 
 
-let elegir = prompt("Hola, ¿deseas ver la lista de productos?")
-
-while (elegir != "si" && elegir != "no") {
-    alert("Por favor, ingresa si o no")
-    elegir = prompt("Hola, ¿deseas ver la lista de productos, si o no?")
-}
-
-if (elegir == "si") {
-    alert("Esta es nuestra lista de productos")
-    let todoelStock = stock.map((stock) => stock.nombre + " " + stock.precio + " " + "$");
-    alert(todoelStock.join(" - "))
-} else if (elegir == "no") {
-    alert("Gracias por la respuesta, ¡nos vemos!")
-}
-while (elegir != "no") {
-    let producto = prompt("¿Que producto deseas ver?")
-    let precio = 0
-
-    if (producto == "leche" || producto == "huevos" || producto == "pan" || producto == "jamon" || producto == "masitas" || producto == "gaseosa") {
-        switch (producto) {
-            case "leche":
-                precio = 100;
-                break;
-            case "huevos":
-                precio= 50;
-                break;
-            case "pan":
-                precio= 70;
-                break;
-            case "jamon":
-                precio= 100;
-                break;
-            case "masitas":
-                precio= 200;
-                break;
-            case "gaseosa":
-                precio= 500;
-                break;
-            default:
-                break;
-        }
-        let cantidad = parseInt(prompt("¿Cuantas unidades?"))
-
-        carrito.push({ producto, cantidad, precio })
-        console.log(carrito)
-    } else {
-        alert("No tenemos eso")
-    }
-    elegir = prompt("¿Deseas elegir otro?")
-
-    while (elegir === "no") {
-        alert("Gracias por la compra")
-        carrito.forEach((carritoFinal)=> {
-            console.log(`producto: ${carritoFinal.producto}, unidades: ${carritoFinal.cantidad}, total a pagar por producto ${carritoFinal.cantidad * carritoFinal.precio}`)
-        })
-        const total = carrito.reduce((acc, el)=> acc + el.precio * el.cantidad, 0)
-    alert(`el total a pagar es: ${total}`)
-    break;    
-    }
-}
