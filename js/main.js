@@ -1,50 +1,8 @@
 const contenido = document.getElementById("contenido")
 
-const productos = [
-    {
-        id: 1,
-        nombre: "Leche", 
-        precio: 100,
-        img: 
-            "https://carrefourar.vtexassets.com/arquivos/ids/229098/7793913001822_01.jpg?v=637727700141700000",
-    },
-    {
-        id: 2,
-        nombre: "Huevos", 
-        precio: 50,
-        img:
-            "https://imagenes.20minutos.es/files/image_990_v3/uploads/imagenes/2022/07/22/huevos.jpeg",
-    },
-    {
-        id: 3,
-        nombre: "Pan", 
-        precio: 70,
-        img:
-            "https://images.hola.com/imagenes/cocina/recetas/20191009151184/pan-de-leche/0-730-595/pan-leche-t.jpg?tx=w_680",
-    },
-    {
-        id: 4,
-        nombre: "Jamon", 
-        precio: 100,
-        img:
-            "https://doina.com.ar/wp-content/uploads/2020/02/1-Jamon-Crudo.png",
-    },
-    {
-        id: 5,
-        nombre: "Masitas", 
-        precio: 200,
-        img: 
-            "https://img-global.cpcdn.com/recipes/2a76808ad58525a9/400x400cq70/photo.jpg",
-    },
-    {
-        id: 6,
-        nombre: "Gaseosa", 
-        precio: 500,
-        img:
-            "https://d2r9epyceweg5n.cloudfront.net/stores/001/151/835/products/77908950004301-80602de5b61cff11bb15890782195412-640-0.jpg",
-    },
-];
+const carritoClick = document.getElementById("Carrito")
 
+const contenedorCarrito = document.getElementById("carrito-contenido")
 
 let carrito = [];
 
@@ -53,7 +11,7 @@ productos.forEach((producto)=>{
     content.className = "card"
     content.innerHTML = `
     <img src="${producto.img}">
-    <h3>${producto.nombre}"<h3/>
+    <h3>${producto.nombre}<h3/>
     <p class="precio">${producto.precio} $</p>
     `;
 
@@ -64,7 +22,50 @@ productos.forEach((producto)=>{
     comprar.className = "comprar";
 
     content.append(comprar);
+
+    comprar.addEventListener("click", () =>{
+        carrito.push({
+            id: producto.id,
+            img: producto.img,
+            nombre: producto.nombre,
+            precio: producto.precio,
+        });
+        console.log(carrito)
+    })
+
 })
+
+carritoClick.addEventListener("click", () => {
+    const verCarrito = document.createElement("div");
+    verCarrito.className = "ver-Carrito"
+    verCarrito.innerHTML = `
+    <h1 class=""ver-carrito-header">Carro</h1>
+    `;
+    contenedorCarrito.append(verCarrito);
+
+    const carritoBoton = document.createElement("h3");
+    carritoBoton.innerText = "x";
+    carritoBoton.className= "carrito-boton";
+
+    verCarrito.append(carritoBoton)
+
+    carrito.forEach((productos) =>{
+        let carritoContenido = document.createElement ("div")
+        carritoContenido.className = "carrito-medio"
+        carritoContenido.innerHTML = `
+        <img src="${productos.img}">
+        <h3>${productos.nombre}</h3>
+        <p>${productos.precio}$</h3>
+    ` ;
+    contenedorCarrito.append(carritoContenido)
+    })
+
+    const total = carrito.reduce((acc, el) => acc + el.precio, 0);
+    const totalComprado = document.createElement("div");
+    totalComprado.className= "totalComprado";
+    totalComprado.innerHTML= `total a pagar: ${total} $`;
+    contenedorCarrito.append(totalComprado)
+});
 
 
 
