@@ -4,7 +4,7 @@ const carritoClick = document.getElementById("Carrito")
 
 const contenedorCarrito = document.getElementById("carrito-contenido")
 
-let carrito = [];
+let carrito = JSON.parse(localStorage.getItem("carritoGuardado")) || [];
 
 productos.forEach((producto)=>{
     let content = document.createElement("div");
@@ -31,6 +31,15 @@ productos.forEach((producto)=>{
             precio: producto.precio,
         });
         console.log(carrito)
+        guardarItems();
     })
 
 })
+// guardar items
+
+const guardarItems = () =>{
+    localStorage.setItem("carritoGuardado", JSON.stringify(carrito));
+};
+
+
+
