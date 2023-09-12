@@ -1,14 +1,16 @@
-import Navbar from "./components/Navbar";
 import ItemListContainer from "./components/ItemListContainer";
+import Navbar from "./components/Navbar";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App = () => {
+  document.body.style.backgroundColor = "#eef4d4";
   return (
-    <>
+    <BrowserRouter>
       <Navbar />
-      <ItemListContainer
-        greeting={"Bienvenidos a Planterra, un sitio de compra de plantas"}
-      />
-    </>
+      <Routes>
+        <Route exath path="/" element={<ItemListContainer />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 };
 export default App;

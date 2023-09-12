@@ -8,29 +8,34 @@ import {
   Spacer,
 } from "@chakra-ui/react";
 import CartWidget from "./CartWidget";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <div>
       <Flex>
-        <Box p="4" bg="#92c9b1">
-          <h3>Planterra</h3>
+        <Box p="4" bg="#82d173">
+          <Link to={"/"}>
+            <h3>Planterra</h3>
+          </Link>
         </Box>
         <Spacer />
-        <Box p="4" bg="#92c9b1">
+        <Box p="4" bg="#82d173">
           <Menu>
             <MenuButton>Inicio</MenuButton>
             <MenuList>
-              <MenuItem>A</MenuItem>
-              <MenuItem>B</MenuItem>
-              <MenuItem>C</MenuItem>
-              <MenuItem>D</MenuItem>
+              <MenuItem>Guias</MenuItem>
+              <MenuItem>Compras</MenuItem>
+              <MenuItem>Nosotros</MenuItem>
+              <MenuItem>Contacto</MenuItem>
             </MenuList>
           </Menu>
         </Box>
         <Spacer />
-        <Box p="4" bg="#92c9b1">
-          <CartWidget />
+        <Box p="4" bg="#82d173">
+          <Link to={"/cart"}>
+            <CartWidget />
+          </Link>
         </Box>
       </Flex>
     </div>
